@@ -5,18 +5,14 @@ import { TasksService } from '../tasks.service';
   selector: 'app-tasks-list',
   standalone: false,
   templateUrl: './tasks-list.component.html',
-  styleUrl: './tasks-list.component.css'
+  styleUrl: './tasks-list.component.css',
 })
 export class TasksListComponent {
-  private taskService = inject(TasksService)
-selectedFilter = signal<string>('all');
-tasks = this.taskService.allTasks;
+  private taskService = inject(TasksService);
+  selectedFilter = signal<string>('all');
+  tasks = this.taskService.allTasks;
 
-// constructor(private tasksService:TasksService){}
-
-onChangeTaskFilter(filter:string){
-  this.selectedFilter.set(filter)
-
-}
-
+  onChangeTaskFilter(filter: string) {
+    this.selectedFilter.set(filter);
+  }
 }

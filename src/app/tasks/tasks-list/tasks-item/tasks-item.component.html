@@ -1,7 +1,25 @@
-<article 
-[class]="{
-    'status-open':task().status === 'OPEN',
-    'status-in-progress':task().status === ''
-}">
-   
+<article
+  [class]="{
+    'status-open': task().status === 'OPEN',
+    'status-in-progress': task().status === 'IN_PROGRESS',
+    'status-done': task().status === 'DONE'
+  }"
+  class="task-item"
+>
+  <header>
+    <h3>{{ task().title }}</h3>
+    <p class="status-label">{{ taskStatus() }}</p>
+  </header>
+
+  <p>{{ task().description }}</p>
+
+  <form (ngSubmit)="onChangeTaskStatus(task().id, status.value)">
+    <label for="status">Change Status:</label>
+    <select id="status" #status>
+      <option value="open" [selected]="task().status === 'OPEN'">Open</option>
+      <option value="in-progress" [selected]="task().status === 'IN_PROGRESS'">In-Progress</option>
+      <option value="done" [selected]="task().status === 'DONE'">Completed</option>
+    </select>
+    <button type="submit">Update Status</button>
+  </form>
 </article>

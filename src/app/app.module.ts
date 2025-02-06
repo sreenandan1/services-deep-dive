@@ -12,7 +12,8 @@ import { TasksItemComponent } from './tasks/tasks-list/tasks-item/tasks-item.com
     AppComponent,
     NewTaskComponent,
     TasksListComponent,
-    TasksItemComponent
+    TasksItemComponent,
+    
   ],
   imports: [
     BrowserModule,
