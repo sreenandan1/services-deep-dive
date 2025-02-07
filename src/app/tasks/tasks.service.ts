@@ -1,5 +1,6 @@
-import { Injectable, signal } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { Task, TasksStatus } from '../tasks.model';
+import { LoggingService } from '../logging.service';
 
 @Injectable({
   providedIn: 'root',
@@ -7,6 +8,7 @@ import { Task, TasksStatus } from '../tasks.model';
 export class TasksService {
   private tasks = signal<Task[]>([]);
   allTasks = this.tasks.asReadonly();
+  private loggingService = inject(LoggingService)
 
   addTask(taskData: { title: string; description: string }) {
     const newTask: Task = {
@@ -25,5 +27,4 @@ export class TasksService {
     );
   }
 
-  constructor() {}
 }

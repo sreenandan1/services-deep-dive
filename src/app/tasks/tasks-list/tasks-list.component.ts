@@ -1,12 +1,13 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { TasksService } from '../tasks.service';
-import { Task } from '../../tasks.model';
+import { Task, TASK_STATUS_OPTIONS, TaskStatusOptions } from '../../tasks.model';
 
 @Component({
   selector: 'app-tasks-list',
   standalone: false,
   templateUrl: './tasks-list.component.html',
   styleUrl: './tasks-list.component.css',
+  providers: []
 })
 export class TasksListComponent {
   private taskService = inject(TasksService);
