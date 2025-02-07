@@ -1,19 +1,17 @@
 <header>
-    <h2>My Tasks</h2>
-    <p>
-        <select (change)="onChangeTaskFilter(filter.value)" #filter>
-            <option value="all">All</option>
-            <option value="open">Open</option>
-            <option value="in-progress">In-Progress</option>
-            <option value="done">Completed</option>
-
-        </select>
-    </p>
+  <h2>My Tasks</h2>
+  <p>
+    <select sty (change)="onChangeTaskFilter(filter.value)" #filter>
+      <option value="all">All</option>
+      <option value="open">Open</option>
+      <option value="in-progress">In-Progress</option>
+      <option value="done">Completed</option>
+    </select>
+  </p>
 </header>
 
 <ul>
-    <li class="bg-primary" *ngFor="let task of tasks(); track task.id"  >
-        <app-tasks-item [task]="task" />
-    </li>
+  <li class="bg-primary" *ngFor="let task of tasks(); trackBy: trackByTaskId">
+    <app-tasks-item [task]="task" />
+  </li>
 </ul>
-

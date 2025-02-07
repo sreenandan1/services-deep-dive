@@ -1,5 +1,6 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { TasksService } from '../tasks.service';
+import { Task } from '../../tasks.model';
 
 @Component({
   selector: 'app-tasks-list',
@@ -10,9 +11,32 @@ import { TasksService } from '../tasks.service';
 export class TasksListComponent {
   private taskService = inject(TasksService);
   selectedFilter = signal<string>('all');
-  tasks = this.taskService.allTasks;
+  tasks = computed(() => {
+    switch (this.selectedFilter()) {
+      case 'all':
+        return this.taskService.allTasks();
+      case 'open':
+        return this.taskService
+          .allTasks()
+          .filter((task) => task.status === 'OPEN');
+      case 'in-progress':
+        return this.taskService
+          .allTasks()
+          .filter((task) => task.status === 'IN_PROGRESS');
 
+      case 'done':
+        return this.taskService
+          .allTasks()
+          .filter((task) => task.status === 'DONE');
+
+      default:
+        return this.taskService.allTasks();
+    }
+  });
   onChangeTaskFilter(filter: string) {
     this.selectedFilter.set(filter);
+  }
+  trackByTaskId(index: number, task: Task): string {
+    return task.id;
   }
 }

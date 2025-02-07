@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { NewTaskComponent } from './tasks/new-task/new-task.component';
 import { TasksListComponent } from './tasks/tasks-list/tasks-list.component';
 import { TasksItemComponent } from './tasks/tasks-list/tasks-item/tasks-item.component';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,8 @@ import { TasksItemComponent } from './tasks/tasks-list/tasks-item/tasks-item.com
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,CommonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
