@@ -1,5 +1,5 @@
-import { Component, computed, input } from '@angular/core';
-import { Task, TasksStatus } from '../../../tasks.model';
+import { Component, computed, inject, input } from '@angular/core';
+import { Task, TASK_STATUS_OPTIONS, TasksStatus } from '../../../tasks.model';
 import { TasksService } from '../../tasks.service';
 
 @Component({
@@ -7,11 +7,13 @@ import { TasksService } from '../../tasks.service';
   standalone: false,
   templateUrl: './tasks-item.component.html',
   styleUrl: './tasks-item.component.css',
+  providers:[]
 })
 export class TasksItemComponent {
   task = input.required<Task>();
 
   constructor(private taskService: TasksService) {}
+  taskStatusOptions = inject(TASK_STATUS_OPTIONS)
 
   taskStatus = computed(() => {
     switch (this.task().status) {
@@ -49,5 +51,8 @@ export class TasksItemComponent {
   trackByTaskId(index:number,task:Task){
     return task.id
 
+  }
+  trackByValue(index:number,option:{value:string}){
+    return option.value
   }
 }

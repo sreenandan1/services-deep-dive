@@ -8,6 +8,7 @@ import { TasksListComponent } from './tasks/tasks-list/tasks-list.component';
 import { TasksItemComponent } from './tasks/tasks-list/tasks-item/tasks-item.component';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { taskStatusOptionsProvider } from './tasks.model';
 
 @NgModule({
   declarations: [
